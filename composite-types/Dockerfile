@@ -1,8 +1,8 @@
-# Dockerfile for running the file_management program on Debian Linux
+# Dockerfile for running the composite-type program on Alpine Linux using Go 1.18
 # Author: Andrew Jarombek
-# Date: 6/14/2022
+# Date: 6/30/2022
 
-FROM golang:1.18.3-alpine3.16
+FROM ajarombek/go-alpine-linux-programming:latest
 
 LABEL maintainer="andrew@jarombek.com" \
       version="1.0.0" \
@@ -11,4 +11,4 @@ LABEL maintainer="andrew@jarombek.com" \
 WORKDIR src
 COPY . .
 
-ENTRYPOINT ["go", "test", "main_test.go"]
+ENTRYPOINT ["go", "test", "."]

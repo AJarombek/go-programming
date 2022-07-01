@@ -7,9 +7,7 @@
 package _go
 
 import (
-	"encoding/json"
 	"github.com/stretchr/testify/assert"
-	"log"
 	"testing"
 )
 
@@ -29,13 +27,6 @@ type Run struct {
 type Bike struct {
 	Exercise
 	Model string
-}
-
-type ConferenceSession struct {
-	Title        string
-	Description  string
-	Attended     bool     `json:"attended,omitempty"`
-	Technologies []string `json:"technology_list"`
 }
 
 func Test(t *testing.T) {
@@ -69,25 +60,4 @@ func Test(t *testing.T) {
 	}
 
 	assert.Equal(t, "Exploring SF", hillyRun.Name)
-
-	sessions := []ConferenceSession{
-		{Title: "Migrate Your Existing DAGs to Databricks Workflows", Attended: true,
-			Technologies: []string{"Databricks", "Airflow"}},
-		{Title: "The Road to a Robust Data Lake: Utilizing Delta Lake and Databricks to Map 150 Million Miles of Roads a Month",
-			Attended: false, Technologies: []string{"Databricks"}},
-		{Title: "Journey to Solving Healthcare Price Transparency with Databricks and Delta Lake",
-			Description: "Talk about my work at Cigna", Attended: true, Technologies: []string{"Databricks", "Airflow"}},
-	}
-
-	data, err := json.Marshal(sessions[0])
-
-	if err != nil {
-		log.Fatalf("Failed to convert struct to JSON: %s", err)
-	}
-
-	assert.Equal(
-		t,
-		"\"Title\":\"Migrate Your Existing DAGs to Databricks Workflows\",\"Description\":\"\",\"attended\":true,\"technology_list\":[\"Databricks\",\"Airflow\"]}",
-		data,
-	)
 }
