@@ -4,6 +4,20 @@
 
 Go programming code, tested and run on Docker containers.
 
+### Commands
+
+**Fix the `go.mod` file.**
+
+```bash
+go mod tidy
+```
+
+**Format the Go code.**
+
+```bash
+go fmt
+```
+
 ### Directories
 
 | Directory Name     | Description                                                                                             |
