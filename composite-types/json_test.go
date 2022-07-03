@@ -53,4 +53,30 @@ func TestJSON(t *testing.T) {
 		"{\"Title\":\"The Road to a Robust Data Lake: Utilizing Delta Lake and Databricks to Map 150 Million Miles of Roads a Month\",\"Description\":\"\",\"technology_list\":[\"Databricks\"]}",
 		string(data),
 	)
+
+	data, err = json.Marshal(sessions)
+
+	if err != nil {
+		assert.Fail(t, "Failed to convert list of structs to JSON")
+	}
+
+	var newSessions []ConferenceSession
+
+	if err = json.Unmarshal(data, &newSessions); err != nil {
+		assert.Fail(t, "Failed to convert JSON to a struct")
+	}
+
+	assert.Equal(t, 3, len(newSessions))
+	assert.Equal(t, "Talk about my work at Cigna", newSessions[2].Description)
+
+	var sessionTitles []struct{ Title string }
+
+	if err = json.Unmarshal(data, &sessionTitles); err != nil {
+		assert.Fail(t, "Failed to convert JSON to a struct")
+	}
+
+	assert.Equal(t, 3, len(sessionTitles))
+	assert.Equal(t, struct{ Title string }{
+		Title: "Journey to Solving Healthcare Price Transparency with Databricks and Delta Lake",
+	}, sessionTitles[2])
 }
