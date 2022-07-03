@@ -36,6 +36,7 @@ go fmt
 | `.run`            | Run configurations to use in the GoLand IDE.                                                           |
 | `base`            | Base `Dockerfile` with common logic for an Alpine Linux Go environment.                                |
 | `composite-types` | Go code dealing with the basics of composite types, based on Chapter 4 of The Go Programming Language. |
+| `functions`       | Go code dealing with the basics of functions, based on Chapter 5 of The Go Programming Language.       |
 
 ### Resources
 
