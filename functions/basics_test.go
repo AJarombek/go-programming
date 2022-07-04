@@ -1,5 +1,5 @@
 /**
- * Test file for creating JSON from structs and converting structs to JSON
+ * Test file for basics of functions in Go
  * Author: Andrew Jarombek
  * Date: 7/1/2022
  */
@@ -87,7 +87,22 @@ func createExerciseLog(hours, minutes, seconds, feel int, miles float64, name, d
 		return
 	}
 
-	// TODO
+	if exerciseType != run && exerciseType != bike && exerciseType != swim && exerciseType != walk {
+		err = errors.New("unsupported exercise type")
+		return
+	}
+
+	log = Exercise{
+		Hours:       hours,
+		Minutes:     minutes,
+		Seconds:     seconds,
+		Miles:       miles,
+		Feel:        feel,
+		Name:        name,
+		Description: description,
+		Type:        exerciseType,
+	}
+
 	return
 }
 
@@ -111,4 +126,33 @@ func TestBasics(t *testing.T) {
 	sqrtX, sqrtY := sqrtPoint(Point{4, 5})
 	assert.Equal(t, 2.0, sqrtX)
 	assert.Equal(t, 2.23606797749979, sqrtY)
+
+	log, err := createExerciseLog(0, 13, 28, 6, 0.15, "I'm bad at swimming", "", swim)
+	assert.NotNil(t, log)
+	assert.Nil(t, err)
+
+	log, err = createExerciseLog(0, 58, 33, 7, 3.16, "Tomac Ln Kayak Launch", "", "kayak")
+
+	// Log is still not nil even though there is an error, but it should not be used.
+	// An error should be checked for first.
+	assert.NotNil(t, log)
+	assert.NotNil(t, err)
+	assert.Equal(t, "unsupported exercise type", err.Error())
+
+	log, err = createExerciseLog(0, 68, 28, 6, 2.47, "Playland with Family", "", walk)
+	assert.NotNil(t, log)
+	assert.NotNil(t, err)
+	assert.Equal(t, "time out of bounds", err.Error())
+
+	log, err = createExerciseLog(0, 16, 55, -1, 2.24, "Cooldown", "Actually felt fine", run)
+	assert.NotNil(t, log)
+	assert.NotNil(t, err)
+	assert.Equal(t, "feel must be between 1 and 10 inclusive", err.Error())
+
+	// Concise error handling strategy for log creation
+	if log, err = createExerciseLog(0, 21, 27, 6, 4, "Four on the Fourth", "Fun little race in New Canaan, CT", run); err != nil {
+		assert.Fail(t, "createExerciseLog unexpectedly returned an error")
+	} else {
+		assert.Equal(t, "Four on the Fourth", log.Name)
+	}
 }
