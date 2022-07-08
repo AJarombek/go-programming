@@ -11,4 +11,4 @@ LABEL maintainer="andrew@jarombek.com" \
 WORKDIR src
 COPY . .
 
-ENTRYPOINT ["go", "test", "."]
+ENTRYPOINT ["go", "test", "-v", "."]

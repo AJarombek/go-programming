@@ -21,4 +21,29 @@ func TestAnonymousFunctions(t *testing.T) {
 
 	assert.Equal(t, 1, point.x)
 	assert.Equal(t, 2, point.y)
+
+	// If an anonymous function requires recursion, it must be defined as a variable first.
+	var find func(root *TreeNode, val int) bool
+
+	find = func(root *TreeNode, val int) bool {
+		if root == nil {
+			return false
+		}
+
+		if root.Val == val {
+			return true
+		}
+
+		if root.Val > val {
+			return find(root.Left, val)
+		} else {
+			return find(root.Right, val)
+		}
+	}
+
+	root := TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}
+	assert.True(t, find(&root, 1))
+	assert.True(t, find(&root, 2))
+	assert.True(t, find(&root, 3))
+	assert.False(t, find(&root, 0))
 }
