@@ -8,6 +8,7 @@ package interfaces
 
 import (
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -73,6 +74,14 @@ const (
 	Bitcoin               = "bitcoin" // USB Drives Only
 )
 
+type Product interface {
+	fmt.Stringer
+	Purchase(transaction Transaction, count int) Product
+	UniqueRequest(request string) Product
+	Price() int
+	Description() string
+}
+
 type Bundles interface {
 	Product
 	Count(size BundleSize, count int) Bundles
@@ -95,14 +104,6 @@ type Tree interface {
 	TrimBranches(count int) Tree
 }
 
-type Product interface {
-	fmt.Stringer
-	Purchase(transaction Transaction, count int) Product
-	UniqueRequest(request string) Product
-	Price() int
-	Description() string
-}
-
 type Transaction interface {
 	fmt.Stringer
 	Complete() (ok bool)
@@ -111,27 +112,124 @@ type Transaction interface {
 	PaymentMethod(method PaymentMethod) Transaction
 }
 
+// ChristmasProduct conforms to the Product interface
+type ChristmasProduct struct {
+	price         int
+	description   string
+	uniqueRequest string
+}
+
+// ChristmasProduct methods
+
+func (c ChristmasProduct) String() string {
+	return fmt.Sprintf("%T for %d dollars.", c, c.price)
+}
+
+func (c ChristmasProduct) Purchase(transaction Transaction, count int) Product {
+	for i := 0; i < count; i++ {
+		transaction.Add(c)
+	}
+
+	return c
+}
+
+func (c ChristmasProduct) UniqueRequest(request string) Product {
+	c.uniqueRequest = request
+	return c
+}
+
+func (c ChristmasProduct) Price() int {
+	return c.price
+}
+
+func (c ChristmasProduct) Description() string {
+	return c.description
+}
+
+// ChristmasTree conforms to the Tree interface
+type ChristmasTree struct {
+	ChristmasProduct
+	freshCut     bool
+	trimBranches int
+}
+
+// ChristmasTree methods
+
+func (c ChristmasTree) Height(height TreeHeight) Tree {
+	c.price = int(height)
+	return c
+}
+
+func (c ChristmasTree) GiveFreshCut(cut bool) Tree {
+	c.freshCut = cut
+	return c
+}
+
+func (c ChristmasTree) TrimBranches(count int) Tree {
+	c.trimBranches = count
+	return c
+}
+
+// HolidayWreath conforms to the Wreath interface
+type HolidayWreath struct {
+	ChristmasProduct
+}
+
+// HolidayWreath methods
+
+func (wreath HolidayWreath) Size(size WreathSize) Wreath {
+	wreath.price = int(size)
+	return wreath
+}
+
+// HolidayRoping conforms to the Roping interface
+type HolidayRoping struct {
+	ChristmasProduct
+}
+
+// HolidayRoping methods
+
+func (roping HolidayRoping) Length(length RopingLength) Roping {
+	roping.price = int(length)
+	return roping
+}
+
+// BundleGreens conforms to the Bundles interface
+type BundleGreens struct {
+	ChristmasProduct
+}
+
+// Greens methods
+
+func (g BundleGreens) Count(size BundleSize, count int) Bundles {
+	g.price = int(size) * count
+	return g
+}
+
+// TreeLotPurchase conforms to the Transaction interface
 type TreeLotPurchase struct {
 	Price     int
 	LineItems []Product
 	Method    PaymentMethod
 }
 
-func (purchase TreeLotPurchase) String() string {
+// TreeLotPurchase methods
+
+func (purchase *TreeLotPurchase) String() string {
 	return fmt.Sprintf("%d items for %d dollars", len(purchase.LineItems), purchase.Price)
 }
 
-func (purchase TreeLotPurchase) Complete() (ok bool) {
+func (purchase *TreeLotPurchase) Complete() (ok bool) {
 	return true
 }
 
-func (purchase TreeLotPurchase) Add(product Product) Transaction {
+func (purchase *TreeLotPurchase) Add(product Product) Transaction {
 	purchase.Price += product.Price()
 	purchase.LineItems = append(purchase.LineItems, product)
 	return purchase
 }
 
-func (purchase TreeLotPurchase) AddAll(products ...Product) Transaction {
+func (purchase *TreeLotPurchase) AddAll(products ...Product) Transaction {
 	for _, product := range products {
 		purchase.Price += product.Price()
 		purchase.LineItems = append(purchase.LineItems, product)
@@ -140,11 +238,24 @@ func (purchase TreeLotPurchase) AddAll(products ...Product) Transaction {
 	return purchase
 }
 
-func (purchase TreeLotPurchase) PaymentMethod(method PaymentMethod) Transaction {
+func (purchase *TreeLotPurchase) PaymentMethod(method PaymentMethod) Transaction {
 	purchase.Method = method
 	return purchase
 }
 
 func TestInterfaceExample(t *testing.T) {
-	// transaction := TreeLotPurchase{}
+	transaction := TreeLotPurchase{}
+
+	// Basic use of the API to buy a tree
+	transaction.Add(
+		ChristmasTree{}.
+			Height(Frasier6to7).
+			GiveFreshCut(true).
+			TrimBranches(0),
+	).
+		PaymentMethod(Cash).
+		Complete()
+
+	assert.Equal(t, 1, len(transaction.LineItems))
+	assert.Equal(t, 70, transaction.Price)
 }
