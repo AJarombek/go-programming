@@ -11,3 +11,4 @@ Go code related to interfaces, based on Chapter 7 of *The Go Programming Languag
 | `go.mod`                         | Go module file for the `interfaces` test code.                       |
 | `interface_example_test.go`      | Example use case for Go interfaces.                                  |
 | `interface_satisfaction_test.go` | Satisfying interfaces in Go and some of the associated complexities. |
+| `sorting_interface_test.go`      | Working with the `sort.Interface` interface.                         |

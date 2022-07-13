@@ -258,4 +258,42 @@ func TestInterfaceExample(t *testing.T) {
 
 	assert.Equal(t, 1, len(transaction.LineItems))
 	assert.Equal(t, 70, transaction.Price)
+	assert.Equal(t, Cash, transaction.Method)
+
+	transaction = TreeLotPurchase{}
+	tree := ChristmasTree{}.
+		Height(Balsam9to10).
+		GiveFreshCut(true).
+		TrimBranches(2).
+		UniqueRequest("Screw into a tree stand")
+
+	doorWreath := HolidayWreath{}.Size(Decorated12Inch)
+	mailboxWreath := HolidayWreath{}.Size(Plain6Inch)
+	porchRoping := HolidayRoping{}.Length(Yards25)
+	chimneyBranches := BundleGreens{}.Count(Standard, 2)
+
+	transaction.
+		AddAll(tree, doorWreath, mailboxWreath, porchRoping, chimneyBranches).
+		PaymentMethod(Bitcoin).
+		Complete()
+
+	assert.Equal(t, Balsam9to10, tree.Price())
+	assert.Equal(t, "interfaces.ChristmasProduct for 80 dollars.", tree.String())
+	assert.Equal(t, "", tree.Description())
+
+	assert.Equal(t, Decorated12Inch, doorWreath.Price())
+	assert.Equal(t, "interfaces.ChristmasProduct for 17 dollars.", doorWreath.String())
+
+	assert.Equal(t, Plain6Inch, mailboxWreath.Price())
+	assert.Equal(t, "interfaces.ChristmasProduct for 8 dollars.", mailboxWreath.String())
+
+	assert.Equal(t, Yards25, porchRoping.Price())
+	assert.Equal(t, "interfaces.ChristmasProduct for 45 dollars.", porchRoping.String())
+
+	assert.Equal(t, int(Standard)*2, chimneyBranches.Price())
+	assert.Equal(t, "interfaces.ChristmasProduct for 6 dollars.", chimneyBranches.String())
+
+	assert.Equal(t, 5, len(transaction.LineItems))
+	assert.Equal(t, 156, transaction.Price)
+	assert.Equal(t, PaymentMethod(Bitcoin), transaction.Method)
 }
