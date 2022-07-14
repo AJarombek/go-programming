@@ -82,6 +82,8 @@ type Product interface {
 	Description() string
 }
 
+// For example's sake, Bundles, Roping, Wreath, Tree, and Transaction are interfaces.  However, in a real world
+// program they shouldn't be, since they each only have a single type that implements them.
 type Bundles interface {
 	Product
 	Count(size BundleSize, count int) Bundles
