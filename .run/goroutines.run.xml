@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="goroutines" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+        <deployment type="dockerfile">
+            <settings>
+                <option name="containerName" value="go_programming_goroutines" />
+                <option name="sourceFilePath" value="goroutines/Dockerfile" />
+            </settings>
+        </deployment>
+        <method v="2" />
+    </configuration>
+</component>
