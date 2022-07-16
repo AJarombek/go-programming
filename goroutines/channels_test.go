@@ -46,4 +46,9 @@ func TestChannels(t *testing.T) {
 	<-done
 
 	assert.Equal(t, val, storage.val)
+
+	// Close the channels.  If channels are not closed, they are garbage collected.
+	// Therefore, there is no negative impact to leaving a channel open.
+	close(ch)
+	close(done)
 }
