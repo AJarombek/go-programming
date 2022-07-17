@@ -7,6 +7,7 @@
 package goroutines
 
 import (
+	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -21,11 +22,13 @@ type Exercise struct {
 	Description string  `json:"description,omitempty"`
 }
 
+type Exercises []Exercise
+
 func TestPipelines(t *testing.T) {
 	extract := make(chan string)
 	raw := make(chan *string)
-	mapp := make(chan *Exercise)
-	filter := make(chan *Exercise)
+	mapp := make(chan Exercises)
+	filter := make(chan Exercises)
 	reduce := make(chan float64)
 
 	// Extract data
@@ -36,19 +39,57 @@ func TestPipelines(t *testing.T) {
 		if err != nil {
 			assert.Fail(t, err.Error())
 		}
-		
-		extract <- string(data)
+
+		dataString := string(data)
+		raw <- &dataString
 	}()
 
 	// Map the raw data
-	go func() {}()
+	go func() {
+		var exercises Exercises
+		data := <-raw
+
+		err := json.Unmarshal([]byte(*data), &exercises)
+
+		if err != nil {
+			assert.Fail(t, err.Error())
+		}
+
+		mapp <- exercises
+	}()
 
 	// Filter the mapped data
-	go func() {}()
+	go func() {
+		exercises := <-mapp
+
+		index := 0
+		end := 0
+
+		for index < len(exercises) {
+			if exercises[index].Type == "run" {
+				exercises[end] = exercises[index]
+				end++
+			}
+
+			index++
+		}
+
+		filter <- exercises[:end]
+	}()
 
 	// Reduce the mapped data
-	go func() {}()
+	go func() {
+		exercises := <-filter
+		result := 0.0
+
+		for _, exercise := range exercises {
+			result += exercise.Miles
+		}
+
+		reduce <- result
+	}()
 
 	extract <- "./exercises.json"
 	result := <-reduce
+	assert.Equal(t, 6.76, result)
 }

@@ -6,5 +6,37 @@
     "miles": 2.54,
     "time": "18:22",
     "description": "Felt a bit better than yesterday but kept it short"
+  },
+  {
+    "name": "Core Exercise",
+    "date": "7/16/2022",
+    "type": "core",
+    "miles": null,
+    "time": "17:39",
+    "description": null
+  },
+  {
+    "name": "Post-Kayak Swim",
+    "date": "7/15/2022",
+    "type": "swim",
+    "miles": 0.24,
+    "time": "18:05",
+    "description": "Felt refreshing after Kayaking, also trying to slowly get better swimming form"
+  },
+  {
+    "name": "Tomac Ln -> Stamford",
+    "date": "7/15/2022",
+    "type": "kayak",
+    "miles": 5.15,
+    "time": "1:24:31",
+    "description": "Beautiful day out, took the day off to relax a bit"
+  },
+  {
+    "name": "First Day Back",
+    "date": "7/15/2022",
+    "type": "run",
+    "miles": 4.22,
+    "time": "31:34",
+    "description": "Felt awful, which isn't much of a surprise after 10 days off"
   }
 ]

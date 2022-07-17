@@ -48,7 +48,10 @@ func TestChannels(t *testing.T) {
 	assert.Equal(t, val, storage.val)
 
 	// Close the channels.  If channels are not closed, they are garbage collected.
-	// Therefore, there is no negative impact to leaving a channel open.
+	// Therefore, there is no negative impact to leaving a channel open, however it
+	// is best practice to do so.
+	// (true in this scenario, but not always true.  There is a scenario called a
+	// goroutine leak in which a value is sent to an open goroutine but never read).
 	close(ch)
 	close(done)
 }
