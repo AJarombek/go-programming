@@ -9,6 +9,7 @@ package goroutines
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
+	"math"
 	"os"
 	"testing"
 )
@@ -41,7 +42,9 @@ func TestPipelines(t *testing.T) {
 		}
 
 		dataString := string(data)
+
 		raw <- &dataString
+		close(extract)
 	}()
 
 	// Map the raw data
@@ -56,6 +59,7 @@ func TestPipelines(t *testing.T) {
 		}
 
 		mapp <- exercises
+		close(raw)
 	}()
 
 	// Filter the mapped data
@@ -75,6 +79,7 @@ func TestPipelines(t *testing.T) {
 		}
 
 		filter <- exercises[:end]
+		close(mapp)
 	}()
 
 	// Reduce the mapped data
@@ -87,9 +92,12 @@ func TestPipelines(t *testing.T) {
 		}
 
 		reduce <- result
+		close(filter)
 	}()
 
 	extract <- "./exercises.json"
 	result := <-reduce
-	assert.Equal(t, 6.76, result)
+	close(reduce)
+
+	assert.Equal(t, 12.24, math.Round(result*100)/100)
 }

@@ -1,5 +1,29 @@
 [
   {
+    "name": "Post-Kayak Swim #2",
+    "date": "7/17/2022",
+    "type": "swim",
+    "miles": 0.20,
+    "time": "15:51",
+    "description": "Water was a little murky today :/"
+  },
+  {
+    "name": "Around Tod's Point",
+    "date": "7/17/2022",
+    "type": "kayak",
+    "miles": 5.89,
+    "time": "1:38:27",
+    "description": "Got a bit burnt, otherwise really nice out"
+  },
+  {
+    "name": "Day 3",
+    "date": "7/17/2022",
+    "type": "run",
+    "miles": 5.48,
+    "time": "38:02",
+    "description": "Feeling better each day which is good"
+  },
+  {
     "name": "Day 2",
     "date": "7/16/2022",
     "type": "run",
