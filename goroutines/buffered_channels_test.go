@@ -7,8 +7,12 @@
 package goroutines
 
 import (
+	"encoding/json"
 	"github.com/stretchr/testify/assert"
+	"io/ioutil"
+	"net/http"
 	"testing"
+	"time"
 )
 
 type Links struct {
@@ -22,8 +26,49 @@ type Endpoint struct {
 	Verb        string `json:"verb"`
 }
 
-func request(endpoint string, out chan<- int, err chan<- bool) {
-	// TODO
+func request(endpoint string, out chan<- int, errChan chan<- bool) {
+	client := http.Client{Timeout: time.Second * 5}
+
+	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
+
+	if err != nil {
+		errChan <- true
+		out <- 0
+		return
+	}
+
+	res, err := client.Do(req)
+
+	if err != nil {
+		errChan <- true
+		out <- 0
+		return
+	}
+
+	if res.Body != nil {
+		defer res.Body.Close()
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		errChan <- true
+		out <- 0
+		return
+	}
+
+	links := Links{}
+
+	err = json.Unmarshal(body, &links)
+
+	if err != nil {
+		errChan <- true
+		out <- 0
+		return
+	}
+
+	out <- len(links.Endpoints)
+	errChan <- false
 }
 
 func TestBufferedChannels(t *testing.T) {
@@ -78,12 +123,12 @@ func TestBufferedChannels(t *testing.T) {
 		result += <-counts
 	}
 
-	assert.Equal(t, 0, result)
+	assert.Equal(t, 57, result)
 
-	success := true
+	failure := false
 	for range endpoints {
-		success = success && <-err
+		failure = failure || <-err
 	}
 
-	assert.True(t, success)
+	assert.False(t, failure)
 }
