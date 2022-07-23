@@ -8,6 +8,7 @@ package goroutines
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
@@ -27,6 +28,7 @@ type Endpoint struct {
 }
 
 func request(endpoint string, out chan<- int, errChan chan<- bool) {
+	fmt.Printf("Start request to %s\n", endpoint)
 	client := http.Client{Timeout: time.Second * 5}
 
 	req, err := http.NewRequest(http.MethodGet, endpoint, nil)
@@ -69,6 +71,7 @@ func request(endpoint string, out chan<- int, errChan chan<- bool) {
 
 	out <- len(links.Endpoints)
 	errChan <- false
+	fmt.Printf("End request to %s\n", endpoint)
 }
 
 func TestBufferedChannels(t *testing.T) {
