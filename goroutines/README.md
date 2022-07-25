@@ -8,6 +8,7 @@ Go code related to goroutines, based on Chapter 8 of *The Go Programming Languag
 |-----------------------------------|-----------------------------------------------------------------------------------------------------|
 | `basics_test.go`                  | Basics of goroutines and concurrency in Go.                                                         |
 | `buffered_channels_test.go`       | Achieving concurrency with buffered channels in Go.                                                 |
+| `cancel_goroutine_test.go`        | Canceling goroutines using channels in Go.                                                          |
 | `channels_test.go`                | Basics of channels which communicate and send data between goroutines in Go.                        |
 | `Dockerfile`                      | Dockerfile for testing the `goroutines` program.                                                    |
 | `exercises.json`                  | JSON file containing a list of exercises.  Used as input data for the goroutine pipeline example.   |
