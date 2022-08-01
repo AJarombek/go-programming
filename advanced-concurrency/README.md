@@ -1,0 +1,12 @@
+### Overview
+
+Go code related to composite types, based on Chapter 4 of *The Go Programming Language*.
+
+### Files
+
+| Filename                    | Description                                                           |
+|-----------------------------|-----------------------------------------------------------------------|
+| `Dockerfile`                | Dockerfile for testing the `advanced-concurrency` program.            |
+| `go.mod`                    | Go module file for the `advanced-concurrency` test code.              |
+| `monitor_goroutine_test.go` | Go code for using the *monitor goroutine* pattern in concurrent code. |
+| `mutex_test.go`             | Go code for using mutex locks in concurrent code.                     |

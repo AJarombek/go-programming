@@ -31,15 +31,16 @@ go fmt
 
 ### Directories
 
-| Directory Name    | Description                                                                                            |
-|-------------------|--------------------------------------------------------------------------------------------------------|
-| `.run`            | Run configurations to use in the GoLand IDE.                                                           |
-| `base`            | Base `Dockerfile` with common logic for an Alpine Linux Go environment.                                |
-| `composite-types` | Go code dealing with the basics of composite types, based on Chapter 4 of The Go Programming Language. |
-| `functions`       | Go code dealing with the basics of functions, based on Chapter 5 of The Go Programming Language.       |
-| `goroutines`      | Go code dealing with goroutines and concurrency, based on Chapter 8 of The Go Programming Language.    |
-| `interfaces`      | Go code dealing with the basics of interfaces, based on Chapter 7 of The Go Programming Language.      |
-| `methods`         | Go code dealing with the basics of methods, based on Chapter 6 of The Go Programming Language.         |
+| Directory Name         | Description                                                                                            |
+|------------------------|--------------------------------------------------------------------------------------------------------|
+| `.run`                 | Run configurations to use in the GoLand IDE.                                                           |
+| `advanced-concurrency` | Go code for advanced concurrency techniques, based on Chapter 9 of The Go Programming Language.        |
+| `base`                 | Base `Dockerfile` with common logic for an Alpine Linux Go environment.                                |
+| `composite-types`      | Go code dealing with the basics of composite types, based on Chapter 4 of The Go Programming Language. |
+| `functions`            | Go code dealing with the basics of functions, based on Chapter 5 of The Go Programming Language.       |
+| `goroutines`           | Go code dealing with goroutines and concurrency, based on Chapter 8 of The Go Programming Language.    |
+| `interfaces`           | Go code dealing with the basics of interfaces, based on Chapter 7 of The Go Programming Language.      |
+| `methods`              | Go code dealing with the basics of methods, based on Chapter 6 of The Go Programming Language.         |
 
 ### Resources
 
