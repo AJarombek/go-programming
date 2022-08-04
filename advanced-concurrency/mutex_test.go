@@ -58,8 +58,7 @@ func UseSickDaysV3(count int) {
 func CheckBalanceV4() int {
 	mutex.Lock()
 	defer mutex.Unlock()
-	balance := employee.sickDays
-	return balance
+	return employee.sickDays
 }
 
 func UseSickDaysV4(count int) {
