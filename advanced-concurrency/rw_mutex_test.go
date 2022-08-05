@@ -64,6 +64,7 @@ func GetSnuggleFriend(name string) SnuggleBug {
 		mu.RUnlock()
 		return friend
 	}
+	mu.RUnlock()
 
 	mu.Lock()
 	if snuggleFriends == nil {
@@ -80,10 +81,23 @@ func GetSnuggleFriend(name string) SnuggleBug {
 // except using sync.Once instead of sync.RWMutex.
 
 var loadFriendsOnce sync.Once
+var snuggleFriendsV2 map[string]SnuggleBug
+
+func populateSnuggleFriendsV2() {
+	snuggleFriendsV2 = make(map[string]SnuggleBug)
+	snuggleFriendsV2["dotty"] = SnuggleBug{
+		name:    "Dotty",
+		species: "Horse",
+	}
+	snuggleFriendsV2["lily"] = SnuggleBug{
+		name:    "Lily",
+		species: "Bear",
+	}
+}
 
 func GetSnuggleFriendV2(name string) SnuggleBug {
-	loadFriendsOnce.Do(populateSnuggleFriends)
-	return snuggleFriends[name]
+	loadFriendsOnce.Do(populateSnuggleFriendsV2)
+	return snuggleFriendsV2[name]
 }
 
 func TestRWMutex(t *testing.T) {
@@ -119,4 +133,5 @@ func TestRWMutex(t *testing.T) {
 
 	wg.Wait()
 	assert.NotNil(t, snuggleFriends)
+	assert.NotNil(t, snuggleFriendsV2)
 }
