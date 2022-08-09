@@ -42,6 +42,7 @@ go fmt
 | `goroutines`           | Go code dealing with goroutines and concurrency, based on Chapter 8 of The Go Programming Language.     |
 | `interfaces`           | Go code dealing with the basics of interfaces, based on Chapter 7 of The Go Programming Language.       |
 | `methods`              | Go code dealing with the basics of methods, based on Chapter 6 of The Go Programming Language.          |
+| `unit-testing`         | Go unit test coding basics, based on Chapter 11 of The Go Programming Language.                         |
 
 ### Resources
 
