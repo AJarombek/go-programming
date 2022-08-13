@@ -60,3 +60,29 @@ func TestCollected(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkCountryCode(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		CountryCode("Slovakia")
+	}
+}
+
+func benchmarkCollected(b *testing.B, size int) {
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < size; j++ {
+			Collected("Ukraine")
+		}
+	}
+}
+
+func BenchmarkCollected10(b *testing.B) {
+	benchmarkCollected(b, 10)
+}
+
+func BenchmarkCollected100(b *testing.B) {
+	benchmarkCollected(b, 100)
+}
+
+func BenchmarkCollected1000(b *testing.B) {
+	benchmarkCollected(b, 1000)
+}
