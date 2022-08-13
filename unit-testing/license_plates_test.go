@@ -6,7 +6,12 @@
 
 package unit_testing
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
+
+/* Unit Tests */
 
 func TestValidCountryCode(t *testing.T) {
 	code, ok := CountryCode("Slovakia")
@@ -61,6 +66,8 @@ func TestCollected(t *testing.T) {
 	}
 }
 
+/* Benchmark Tests */
+
 func BenchmarkCountryCode(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		CountryCode("Slovakia")
@@ -85,4 +92,30 @@ func BenchmarkCollected100(b *testing.B) {
 
 func BenchmarkCollected1000(b *testing.B) {
 	benchmarkCollected(b, 1000)
+}
+
+/* Example Tests */
+
+func ExampleCountryCode() {
+	fmt.Println(CountryCode("Slovakia"))
+	fmt.Println(CountryCode("Ukraine"))
+	fmt.Println(CountryCode("United Kingdom"))
+	fmt.Println(CountryCode("Japan"))
+	// Output:
+	// SK true
+	// UA true
+	// UK true
+	//  false
+}
+
+func ExampleCollected() {
+	fmt.Println(Collected("Slovakia"))
+	fmt.Println(Collected("Ukraine"))
+	fmt.Println(Collected("United Kingdom"))
+	fmt.Println(Collected("Japan"))
+	// Output:
+	// 2 true
+	// 5 true
+	// 0 true
+	// 0 false
 }
