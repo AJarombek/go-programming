@@ -1,5 +1,5 @@
 /**
- * Test file for the basics of reflectio in Go
+ * Test file for the basics of reflection in Go
  * Author: Andrew Jarombek
  * Date: 8/13/2022
  */
