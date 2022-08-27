@@ -4,7 +4,7 @@
  * Date: 8/19/2022
  */
 
-package functions
+package low_level_programming
 
 import (
 	"github.com/stretchr/testify/assert"
