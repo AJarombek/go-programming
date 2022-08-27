@@ -46,6 +46,14 @@ go fmt
 | `reflection`            | Go code for reflection, based on Chapter 12 of The Go Programming Language.                             |
 | `unit-testing`          | Go unit test coding basics, based on Chapter 11 of The Go Programming Language.                         |
 
+### Version History
+
+**[v1.0.0](https://github.com/AJarombek/go-programming/tree/v1.0.0) - Initial Version**
+
+> Release Date: Aug 27th, 2022
+
+* Go language examples based on the book, *The Go Programming Language*, by Donovan and Kernighan.
+
 ### Resources
 
 1. [The Go Programming Language](https://www.gopl.io/)
