@@ -6,6 +6,7 @@ Go code related to goroutines, based on Chapter 8 of *The Go Programming Languag
 
 | Filename                          | Description                                                                                         |
 |-----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `basic_example`                   | Basics example program for using goroutines.                                                        |
 | `basics_test.go`                  | Basics of goroutines and concurrency in Go.                                                         |
 | `buffered_channels_test.go`       | Achieving concurrency with buffered channels in Go.                                                 |
 | `cancel_goroutine_test.go`        | Canceling goroutines using channels in Go.                                                          |
