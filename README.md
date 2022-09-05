@@ -48,6 +48,13 @@ go fmt
 
 ### Version History
 
+**[v1.0.1](https://github.com/AJarombek/go-programming/tree/v1.0.1) - Goroutine Article Update**
+
+> Release Date: Sep 5th, 2022
+
+* Additional examples of goroutines and channels for use in an upcoming 
+[article on goroutines](https://jarombek.com/blog/sep-10-2022-goroutines).
+
 **[v1.0.0](https://github.com/AJarombek/go-programming/tree/v1.0.0) - Initial Version**
 
 > Release Date: Aug 27th, 2022
