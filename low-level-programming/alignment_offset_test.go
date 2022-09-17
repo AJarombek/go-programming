@@ -21,10 +21,17 @@ func TestAlignmentOffset(t *testing.T) {
 	boolAlignment := unsafe.Alignof(true)
 	assert.Equal(t, uintptr(1), boolAlignment)
 
-	// For complex types like structs and arrays,
+	// For complex types like strings, structs and arrays,
 	// the result of unsafe.Alignof() is different than unsafe.Sizeof().
 	// Alignment specifies where in memory data should be stored,
 	// while Sizeof() specifies the size of the data in memory.
+	str := "Andy"
+	strAlignment := unsafe.Alignof(str)
+	strSize := unsafe.Sizeof(str)
+
+	assert.Equal(t, uintptr(8), strAlignment)
+	assert.Equal(t, uintptr(16), strSize)
+
 	array := []int{0, 1, 2, 3}
 	arrayAlignment := unsafe.Alignof(array)
 	arraySize := unsafe.Sizeof(array)

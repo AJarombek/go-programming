@@ -6,6 +6,13 @@ Go programming code, tested and run on Docker containers.
 
 ### Commands
 
+**Running Tests using Please Build**
+
+```bash
+# unit-testing directory
+plz test //unit-testing:license_plates_test -vvv
+```
+
 **Create Base Docker Image**
 
 ```bash
@@ -29,6 +36,21 @@ go mod tidy
 go fmt
 ```
 
+**Install Please Build locally (MacOS).**
+
+```bash
+curl https://get.please.build | bash
+source ~/.profile
+plz --version
+plz --help
+```
+
+**Initialize Please in the Repo**
+
+```bash
+plz init
+```
+
 ### Directories
 
 | Directory Name          | Description                                                                                             |
@@ -45,6 +67,8 @@ go fmt
 | `methods`               | Go code dealing with the basics of methods, based on Chapter 6 of The Go Programming Language.          |
 | `reflection`            | Go code for reflection, based on Chapter 12 of The Go Programming Language.                             |
 | `unit-testing`          | Go unit test coding basics, based on Chapter 11 of The Go Programming Language.                         |
+| `.plzconfig`            | Please Build configuration file for the repository.                                                     |
+| `BUILD`                 | Please Build rules for the top level directory of the repository.                                       |
 
 ### Version History
 
