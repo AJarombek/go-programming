@@ -16,4 +16,8 @@ go_test(
         ":license_plates",
         "//:go_download",
     ],
+    labels = [
+        "unit_testing",
+        "test",
+    ],
 )

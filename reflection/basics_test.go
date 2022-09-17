@@ -9,6 +9,7 @@ package reflection
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"os"
 	"reflect"
 	"testing"
 	"time"
@@ -50,11 +51,17 @@ func TestBasics(t *testing.T) {
 	assert.Equal(t, 1, coreType.NumMethod())
 	assert.Equal(t, 2, coreType.NumField())
 
+	module_name := "github.com/ajarombek/go-programming/reflection"
+
+	if os.Getenv("TEST_ENV") == "plz" {
+		module_name = "test_lib"
+	}
+
 	assert.Equal(t, "time", coreType.Field(0).Name)
-	assert.Equal(t, "github.com/ajarombek/go-programming/reflection", coreType.Field(0).PkgPath)
+	assert.Equal(t, module_name, coreType.Field(0).PkgPath)
 
 	assert.Equal(t, "date", coreType.Field(1).Name)
-	assert.Equal(t, "github.com/ajarombek/go-programming/reflection", coreType.Field(1).PkgPath)
+	assert.Equal(t, module_name, coreType.Field(1).PkgPath)
 
 	assert.Equal(t, "Summary", coreType.Method(0).Name)
 

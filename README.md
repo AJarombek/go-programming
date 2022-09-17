@@ -9,6 +9,9 @@ Go programming code, tested and run on Docker containers.
 **Running Tests using Please Build**
 
 ```bash
+# reflection directory
+plz test //reflection:test -vvv
+
 # unit-testing directory
 plz test //unit-testing:license_plates_test -vvv
 ```
@@ -88,3 +91,6 @@ plz init
 ### Resources
 
 1. [The Go Programming Language](https://www.gopl.io/)
+2. [Please Build Go Intro](https://please.build/codelabs/go_intro/#0)
+3. [Please Build Go Rules](https://please.build/lexicon.html#go)
+4. [Please Build Go Sample App](https://github.com/thought-machine/please-codelabs/tree/main/getting_started_go)

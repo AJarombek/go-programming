@@ -7,3 +7,6 @@ version = 16.22.1
 
 [go]
 GoTool = //:go_download|go
+
+[buildenv]
+test-env = plz

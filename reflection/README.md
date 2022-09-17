@@ -6,6 +6,7 @@ Go code related to reflection, based on Chapter 12 of *The Go Programming Langua
 
 | Filename         | Description                                      |
 |------------------|--------------------------------------------------|
+| `BUILD`          | Please Build rules for the `reflection` program. |
 | `basics_test.go` | Basics of reflection in Go.                      |
 | `Dockerfile`     | Dockerfile for testing the `reflection` program. |
 | `go.mod`         | Go module file for the `reflection` test code.   |
