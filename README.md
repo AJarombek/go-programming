@@ -19,6 +19,19 @@ plz test //composite-types:test -vvv
 # functions directory
 plz test //functions:test -vvv
 
+# go-tool directory
+plz test //go-tool:test -vvv
+plz run //go-tool:go_run -vvv
+
+# goroutine directory
+plz test //goroutines:test -vvv
+
+plz build //goroutines/channel_example:binary -vvv
+./plz-out/bin/goroutines/channel_example/channel_example
+
+plz build //goroutines/goroutine_example:binary -vvv
+./plz-out/bin/goroutines/goroutine_example/goroutine_example
+
 # interfaces directory
 plz test //interfaces:test -vvv
 

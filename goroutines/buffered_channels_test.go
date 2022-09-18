@@ -126,7 +126,7 @@ func TestBufferedChannels(t *testing.T) {
 		result += <-counts
 	}
 
-	assert.Equal(t, 57, result)
+	assert.Equal(t, 50, result)
 
 	failure := false
 	for range endpoints {

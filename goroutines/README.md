@@ -6,6 +6,7 @@ Go code related to goroutines, based on Chapter 8 of *The Go Programming Languag
 
 | Filename                          | Description                                                                                         |
 |-----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `BUILD`                           | Please Build rules for the `goroutines` program.                                                    |
 | `channel_example`                 | Basics example program for using channels with goroutines.                                          |
 | `goroutine_example`               | Basics example program for using goroutines.                                                        |
 | `basics_test.go`                  | Basics of goroutines and concurrency in Go.                                                         |

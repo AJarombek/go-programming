@@ -4,6 +4,8 @@
 # Author: Andrew Jarombek
 # Date: 8/4/2022
 
+cd go-tool || echo "go-tool directory"
+
 # Examine the current go environment
 printf "Go Environment Details: \n\n"
 go env

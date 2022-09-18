@@ -1,4 +1,4 @@
-# Please Build file for the advanced_concurrency Go module.
+# Please Build file for the go_tool Go module.
 # Author: Andrew Jarombek
 # Date: 9/17/2022
 
@@ -15,7 +15,7 @@ go_test(
         "//:testify",
     ],
     labels = [
-        "advanced_concurrency",
+        "go_tool",
         "test"
     ],
 )
@@ -24,7 +24,7 @@ sh_binary(
     name = "go_run",
     srcs = ["run.sh"],
     labels = [
-       "advanced_concurrency",
+       "go_tool",
        "shell"
     ],
 )

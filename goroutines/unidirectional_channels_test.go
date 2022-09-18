@@ -14,7 +14,13 @@ import (
 )
 
 func read(out chan<- Exercises) {
-	data, err := os.ReadFile("./exercises.json")
+	filename := "./exercises.json"
+
+	if os.Getenv("TEST_ENV") == "plz" {
+		filename = "./goroutines/exercises.json"
+	}
+
+	data, err := os.ReadFile(filename)
 
 	if err != nil {
 		out <- Exercises{}

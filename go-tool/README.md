@@ -6,6 +6,7 @@ Shell and Go code utilizing the `go` CLI tool, based on Chapters 9 & 10 of *The 
 
 | Filename                 | Description                                                     |
 |--------------------------|-----------------------------------------------------------------|
+| `BUILD`                  | Please Build rules for the `go-tool` program.                   |
 | `current_times`          | Go program that lists the current times in different locations. |
 | `Dockerfile`             | Dockerfile for testing the `go-tool` program.                   |
 | `go.mod`                 | Go module file for the `go-tool` test code.                     |

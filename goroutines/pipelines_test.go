@@ -95,7 +95,13 @@ func TestPipelines(t *testing.T) {
 		close(filter)
 	}()
 
-	extract <- "./exercises.json"
+	filename := "./exercises.json"
+
+	if os.Getenv("TEST_ENV") == "plz" {
+		filename = "./goroutines/exercises.json"
+	}
+
+	extract <- filename
 	result := <-reduce
 	close(reduce)
 
