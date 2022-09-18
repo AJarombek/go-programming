@@ -9,6 +9,9 @@ Go programming code, tested and run on Docker containers.
 **Running Tests using Please Build**
 
 ```bash
+# Run all the tests in the repository
+plz test //... -i test -vvv
+
 # advanced-concurrency directory
 plz test //advanced-concurrency:test -vvv
 plz run //advanced-concurrency:go_run_sh -vvv
@@ -106,6 +109,14 @@ plz init
 | `BUILD`                 | Please Build rules for the top level directory of the repository.                                       |
 
 ### Version History
+
+**[v1.1.0](https://github.com/AJarombek/go-programming/tree/v1.1.0) - Please Build**
+
+> Release Date: Sep 18th, 2022
+
+* Integrate Please Build into the repository, enabling isolated, reproducible builds.
+* Add more code samples for an upcoming 
+[article on data alignment in Go](https://jarombek.com/blog/sep-24-2022-data-alignment)
 
 **[v1.0.1](https://github.com/AJarombek/go-programming/tree/v1.0.1) - Goroutine Article Update**
 
