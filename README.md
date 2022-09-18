@@ -9,11 +9,30 @@ Go programming code, tested and run on Docker containers.
 **Running Tests using Please Build**
 
 ```bash
+# advanced-concurrency directory
+plz test //advanced-concurrency:test -vvv
+plz run //advanced-concurrency:go_run_sh -vvv
+
+# composite-types directory
+plz test //composite-types:test -vvv
+
+# functions directory
+plz test //functions:test -vvv
+
+# interfaces directory
+plz test //interfaces:test -vvv
+
+# low-level-programming directory
+plz test //low-level-programming:test -vvv
+
+# methods directory
+plz test //methods:test -vvv
+
 # reflection directory
 plz test //reflection:test -vvv
 
 # unit-testing directory
-plz test //unit-testing:license_plates_test -vvv
+plz test //unit-testing:test -vvv
 ```
 
 **Create Base Docker Image**

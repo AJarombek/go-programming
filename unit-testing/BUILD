@@ -10,7 +10,7 @@ go_library(
 )
 
 go_test(
-    name = "license_plates_test",
+    name = "test",
     srcs = ["license_plates_test.go"],
     deps = [
         ":license_plates",

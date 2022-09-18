@@ -4,6 +4,8 @@
 # Author: Andrew Jarombek
 # Date: 8/4/2022
 
+cd advanced-concurrency || echo "advanced-concurrency directory"
+
 # Test all the Go files
 go test -v .
 
