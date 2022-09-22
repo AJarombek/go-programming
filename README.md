@@ -1,8 +1,10 @@
 # go-programming
 
+![Maintained Label](https://img.shields.io/badge/Maintained-Yes-brightgreen?style=for-the-badge)
+
 ### Overview
 
-Go programming code, tested and run on Docker containers.
+Go programming code, tested and run on Docker containers.  Builds are performed using Please Build.
 
 ### Commands
 
@@ -93,6 +95,7 @@ plz init
 
 | Directory Name          | Description                                                                                             |
 |-------------------------|---------------------------------------------------------------------------------------------------------|
+| `.github`               | GitHub Actions for CI/CD pipelines.                                                                     |
 | `.run`                  | Run configurations to use in the GoLand IDE.                                                            |
 | `advanced-concurrency`  | Go code for advanced concurrency techniques, based on Chapter 9 of The Go Programming Language.         |
 | `base`                  | Base `Dockerfile` with common logic for an Alpine Linux Go environment.                                 |
@@ -107,6 +110,7 @@ plz init
 | `unit-testing`          | Go unit test coding basics, based on Chapter 11 of The Go Programming Language.                         |
 | `.plzconfig`            | Please Build configuration file for the repository.                                                     |
 | `BUILD`                 | Please Build rules for the top level directory of the repository.                                       |
+| `Dockerfile`            | Dockerfile for testing all the Go code in the repository.                                               |
 
 ### Version History
 

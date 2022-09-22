@@ -5,8 +5,13 @@
 [please]
 version = 16.22.1
 
-[go]
-GoTool = //:go_download|go
+; Uncomment to allow Please Build to handle the installation of go
+; [go]
+; GoTool = //:go_download|go
+
+[build]
+PassEnv = PATH
+path = $PATH:/usr/local/bin:/usr/bin:/bin
 
 [buildenv]
 test-env = plz
