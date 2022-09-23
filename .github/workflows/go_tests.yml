@@ -31,4 +31,4 @@ jobs:
         run: ls -ltra
 
       - name: Run Go tests using Please Build
-        run: plz test //... -i test -vv
+        run: plz test //... -i test -vvv

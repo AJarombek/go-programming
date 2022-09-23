@@ -31,7 +31,13 @@ jobs:
         run: ls -ltra
 
       - name: Build the channel_example Go binary using Please Build
-        run: plz build //goroutines/channel_example:binary -vv
+        run: plz build //goroutines/channel_example:binary -vvv
+
+      - name: Run the channel_example binary
+        run: ./plz-out/bin/goroutines/channel_example/channel_example
 
       - name: Build the goroutine_example Go binary using Please Build
-        run: plz build //goroutines/goroutine_example:binary -vv
+        run: plz build //goroutines/goroutine_example:binary -vvv
+
+      - name: Run the goroutine_example binary
+        run: ./plz-out/bin/goroutines/goroutine_example/goroutine_example
