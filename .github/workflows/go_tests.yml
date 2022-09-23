@@ -1,0 +1,34 @@
+# GitHub Action for running Go tests
+# Author: Andrew Jarombek
+# Date: 9/21/2022
+
+name: Go Tests
+
+on:
+  push:
+    branches: ["main", "feature/*"]
+  pull_request:
+    branches: ["main"]
+
+  schedule:
+    - cron: "0 4 * * 1-5"
+
+  workflow_dispatch:
+
+jobs:
+  go_tests:
+    runs-on: ubuntu-latest
+    container: ajarombek/go-alpine-linux-programming:latest
+    steps:
+      - run: echo "Job running on a ${{ runner.os }} server"
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - run: echo "Checked out branch '${{ github.ref }}' of the ${{ github.repository }} repository"
+
+      - name: Files installed from repository
+        run: ls -ltra
+
+      - name: Run Go tests using Please Build
+        run: plz test //... -i test -vv

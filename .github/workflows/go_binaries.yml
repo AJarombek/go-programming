@@ -1,8 +1,8 @@
-# GitHub Action for running Go tests
+# GitHub Action for building Go binaries
 # Author: Andrew Jarombek
-# Date: 9/21/2022
+# Date: 9/22/2022
 
-name: Test
+name: Go Binaries
 
 on:
   push:
@@ -11,12 +11,12 @@ on:
     branches: ["main"]
 
   schedule:
-    - cron: "0 4 * * 1-5"
+    - cron: "0 5 * * 1-5"
 
   workflow_dispatch:
 
 jobs:
-  test_go:
+  go_binaries:
     runs-on: ubuntu-latest
     container: ajarombek/go-alpine-linux-programming:latest
     steps:
@@ -30,5 +30,8 @@ jobs:
       - name: Files installed from repository
         run: ls -ltra
 
-      - name: Run Go tests using Please Build
-        run: plz test //... -i test -vvv
+      - name: Build the channel_example Go binary using Please Build
+        run: plz build //goroutines/channel_example:binary -vv
+
+      - name: Build the goroutine_example Go binary using Please Build
+        run: plz build //goroutines/goroutine_example:binary -vv
