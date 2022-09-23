@@ -6,9 +6,12 @@ name: Test
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "feature/*"]
   pull_request:
     branches: ["main"]
+
+  schedule:
+    - cron: "0 4 * * 1-5"
 
   workflow_dispatch:
 
@@ -25,7 +28,7 @@ jobs:
       - run: echo "Checked out branch '${{ github.ref }}' of the ${{ github.repository }} repository"
 
       - name: Files installed from repository
-        run: ls -ltr ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
 
       - name: Run Go tests using Please Build
         run: plz test //... -i test -vvv
