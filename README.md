@@ -114,6 +114,16 @@ plz init
 
 ### Version History
 
+**[v1.1.2](https://github.com/AJarombek/go-programming/tree/v1.1.2) - Please Build/GitHub Actions Article**
+
+> Release Date: Nov 13th, 2022
+* Small changes to prepare for an upcoming software engineering article on [jarombek.com](https://jarombek.com/blog).
+
+**[v1.1.1](https://github.com/AJarombek/go-programming/tree/v1.1.1) - GitHub Actions**
+
+> Release Date: Sep 22nd, 2022
+* GitHub Action CI/CD setup for running Go tests.
+
 **[v1.1.0](https://github.com/AJarombek/go-programming/tree/v1.1.0) - Please Build**
 
 > Release Date: Sep 18th, 2022
