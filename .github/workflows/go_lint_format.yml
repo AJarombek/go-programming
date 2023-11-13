@@ -15,8 +15,8 @@ on:
 jobs:
   lint-and-format:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     container: ajarombek/go-alpine-linux-programming:latest
-
     strategy:
       matrix:
         directory:
@@ -30,7 +30,6 @@ jobs:
           - "methods"
           - "reflection"
           - "unit-testing"
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
