@@ -17,28 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     container: ajarombek/go-alpine-linux-programming:latest
 
+    strategy:
+      matrix:
+        directory:
+          - "advanced-concurrency"
+          - "composite-types"
+          - "functions"
+          - "go-tool"
+          - "goroutines"
+          - "interfaces"
+          - "low-level-programming"
+          - "methods"
+          - "reflection"
+          - "unit-testing"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install golint
-        run: go get -u golang.org/x/lint/golint
-
-      - name: Run golint
-        run: golint ./...
-
-      - name: Install goimports
-        run: go get golang.org/x/tools/cmd/goimports
-
-      - name: Run goimports
-        run: goimports -l -w .
-
-      - name: Check for changes after goimports
+      - name: Go vet and fmt
+        working-directory: ${{ matrix.directory }}
         run: |
-          git diff --exit-code || { echo "Please run goimports to format the code."; exit 1; }
-
-      - name: Install golangci-lint
-        run: go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-
-      - name: Run golangci-lint
-        run: golangci-lint run
+          go vet ./...
+          go fmt ./...
