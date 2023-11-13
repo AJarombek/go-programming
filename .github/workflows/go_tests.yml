@@ -6,12 +6,9 @@ name: Go Tests
 
 on:
   push:
-    branches: ["main", "feature/*"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
-
-  schedule:
-    - cron: "0 5 * * 5"
 
   workflow_dispatch:
 
