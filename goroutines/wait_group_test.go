@@ -40,13 +40,14 @@ func makeRequests(endpoints <-chan string) (result int, ok bool) {
 	}()
 
 	result = 0
-	ok = false
+	errorsFound := false
 
 	for i := 0; i < apiCalls; i++ {
 		result += <-counts
-		ok = ok && !<-err
+		errorsFound = errorsFound || <-err
 	}
 
+	ok = !errorsFound
 	return result, ok
 }
 
@@ -74,5 +75,5 @@ func TestWaitGroup(t *testing.T) {
 	result, ok := makeRequests(endpoints)
 
 	assert.Equal(t, 20, result)
-	assert.False(t, ok)
+	assert.True(t, ok)
 }
