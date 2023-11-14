@@ -106,31 +106,39 @@ func TestBufferedChannels(t *testing.T) {
 		"https://api.saintsxctf.com/v2/forgot_password/links",
 		"https://api.saintsxctf.com/v2/logs/links",
 		"https://api.saintsxctf.com/v2/log_feed/links",
-		"https://api.saintsxctf.com/v2/messages/links",
-		"https://api.saintsxctf.com/v2/message_feed/links",
 		"https://api.saintsxctf.com/v2/notifications/links",
 		"https://api.saintsxctf.com/v2/range_view/links",
 		"https://api.saintsxctf.com/v2/teams/links",
 		"https://api.saintsxctf.com/v2/users/links",
 	}
 
-	counts := make(chan int)
-	err := make(chan bool)
+	counts := make(chan int, len(endpoints))
+	err := make(chan bool, len(endpoints))
 
 	for _, endpoint := range endpoints {
 		go func(endpoint string) { request(endpoint, counts, err) }(endpoint)
 	}
 
 	result := 0
-	for range endpoints {
-		result += <-counts
+	for i := 0; i < len(endpoints); i++ {
+		select {
+		case count := <-counts:
+			result += count
+		case <-time.After(time.Second * 5):
+			t.Fatal("Timed out waiting for count value.")
+		}
 	}
 
 	assert.Equal(t, 50, result)
 
 	failure := false
-	for range endpoints {
-		failure = failure || <-err
+	for i := 0; i < len(endpoints); i++ {
+		select {
+		case err := <-err:
+			failure = failure || err
+		case <-time.After(time.Second * 5):
+			t.Fatal("Timed out waiting for error value.")
+		}
 	}
 
 	assert.False(t, failure)

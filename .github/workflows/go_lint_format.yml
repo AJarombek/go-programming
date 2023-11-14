@@ -1,0 +1,41 @@
+# GitHub Action for linting and formatting Go code
+# Author: Andrew Jarombek
+# Date: 11/13/2022
+
+name: Go Lint and Format
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: ajarombek/go-alpine-linux-programming:latest
+    strategy:
+      matrix:
+        directory:
+          - "advanced-concurrency"
+          - "composite-types"
+          - "functions"
+          - "go-tool"
+          - "goroutines"
+          - "interfaces"
+          - "low-level-programming"
+          - "methods"
+          - "reflection"
+          - "unit-testing"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Go vet and fmt
+        working-directory: ${{ matrix.directory }}
+        run: |
+          go vet ./...
+          go fmt ./...

@@ -6,18 +6,16 @@ name: Go Tests
 
 on:
   push:
-    branches: ["main", "feature/*"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
-
-  schedule:
-    - cron: "0 5 * * 5"
 
   workflow_dispatch:
 
 jobs:
   go_tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     container: ajarombek/go-alpine-linux-programming:latest
     steps:
       - run: echo "Job running on a ${{ runner.os }} server"
